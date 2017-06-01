@@ -3,7 +3,7 @@ resources:
     type: git
     source:
       uri: https://github.com/xloypaypa/learnConcourse.git
-      branch: pipeline
+      branch: master
   - name: time
     type: time
     source:

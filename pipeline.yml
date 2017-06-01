@@ -2,7 +2,7 @@ resources:
   - name: git-repo
     type: git
     source:
-      uri: https://github.com/xloypaypa/Ladder.git
+      uri: https://github.com/xloypaypa/learnConcourse.git
       branch: pipeline
   - name: time
     type: time

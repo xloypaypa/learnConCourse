@@ -1,0 +1,32 @@
+resources:
+  - name: git-repo
+    type: git
+    source:
+      uri: https://github.com/xloypaypa/Ladder.git
+      branch: pipeline
+  - name: time
+    type: time
+    source:
+      interval: 60s
+
+
+jobs:
+  - name: maven-clean
+    plan:
+    - aggregate:
+      - get: git-repo
+        trigger: true
+      - get: time
+    - task: maven-clean
+      privileged: true
+      file: git-repo/clean.yml
+
+  - name: maven-test
+    plan:
+    - aggregate:
+      - get: git-repo
+        trigger: true
+        passed: [maven-clean]
+    - task: maven-test
+      privileged: true
+      file: git-repo/test.yml

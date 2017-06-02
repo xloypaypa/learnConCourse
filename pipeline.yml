@@ -30,3 +30,12 @@ jobs:
     - task: maven-test
       privileged: true
       file: git-repo/test.yml
+
+  - name: maven-package
+    plan:
+    - aggregate:
+      - get: git-repo
+        passed: [maven-test]
+    - task: maven-package
+      privileged: true
+      file: git-repo/package.yml

@@ -2,7 +2,7 @@ resources:
   - name: git-repo
     type: git
     source:
-      uri: https://github.com/xloypaypa/learnConcourse.git
+      uri: {{gist-url}}
       branch: master
   - name: time
     type: time

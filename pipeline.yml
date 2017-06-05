@@ -8,6 +8,8 @@ resources:
     type: time
     source:
       interval: 60s
+  - name: docker-output
+    type: docker-image
 
 
 jobs:
@@ -30,11 +32,16 @@ jobs:
     - task: maven-test
       privileged: true
       file: git-repo/test.yml
+    - put: docker-output
+      params:
+        pull_repository: ubuntu
 
   - name: maven-package
     plan:
     - aggregate:
       - get: git-repo
+        passed: [maven-test]
+      - get: docker-output
         passed: [maven-test]
     - task: maven-package
       privileged: true

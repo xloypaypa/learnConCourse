@@ -10,6 +10,10 @@ resources:
       interval: 60s
   - name: docker-output
     type: docker-image
+    source:
+      repository: docker pull xloypaypa/learnconcourse
+      username: {{docker-username}}
+      password: {{docker-password}}
 
 
 jobs:
@@ -34,7 +38,7 @@ jobs:
       file: git-repo/test.yml
     - put: docker-output
       params:
-        pull_repository: ubuntu
+        build: git-repo/docker
 
   - name: maven-package
     plan:
